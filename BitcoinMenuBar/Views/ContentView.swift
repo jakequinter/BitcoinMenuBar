@@ -11,10 +11,28 @@ struct ContentView: View {
     @State private var bitcoin: Crypto?
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
+            HStack {
+                Text("BTC")
+                    .font(.caption2)
+                    .padding(.bottom, 4)
+                    .foregroundColor(.secondary)
+                
+                Spacer()
+                
+                Button("Quit") {
+                    quit()
+                }
+                .buttonStyle(.plain)
+                .font(.caption2)
+                .foregroundColor(.secondary)
+            }
+            .multilineTextAlignment(.center)
+            
             Text(bitcoin?.formattedAmount ?? "0")
         }
         .padding()
+        .frame(width: 150)
         .onAppear(perform: loadData)
     }
     
@@ -40,6 +58,10 @@ struct ContentView: View {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func quit() {
+        NSApp.terminate(nil)
     }
 }
 
