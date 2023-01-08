@@ -22,6 +22,11 @@ DerivedData/
 *.perspectivev3
 !default.perspectivev3
 
+## Other
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+**/.DS_Store
 
 ## App packaging
 *.ipa

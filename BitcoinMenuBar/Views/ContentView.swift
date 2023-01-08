@@ -14,26 +14,37 @@ struct ContentView: View {
         VStack(alignment: .leading) {
             HStack {
                 Text("BTC")
-                    .font(.caption2)
-                    .padding(.bottom, 4)
                     .foregroundColor(.secondary)
                 
                 Spacer()
-                
-                Button("Quit") {
-                    quit()
+               
+                Button {
+                   loadData()
+                } label: {
+                    Image(systemName: "arrow.counterclockwise.circle.fill")
                 }
                 .buttonStyle(.plain)
-                .font(.caption2)
+                .foregroundColor(.secondary)
+                
+                Button {
+                    quit()
+                } label: {
+                    Image(systemName: "x.circle.fill")
+                }
+                .buttonStyle(.plain)
                 .foregroundColor(.secondary)
             }
+            .padding(.bottom, 4)
             .multilineTextAlignment(.center)
             
             Text(bitcoin?.formattedAmount ?? "0")
+                .font(.title)
         }
         .padding()
         .frame(width: 150)
-        .onAppear(perform: loadData)
+        .onAppear {
+            loadData()
+        }
     }
     
     func fetchStrikeAPI() async throws {
@@ -70,3 +81,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
